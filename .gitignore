@@ -1,0 +1,31 @@
+# Virtual environment
+python/.venv/
+__pycache__
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
+# Test / typing caches
+.pytest_cache/
+.mypy_cache/
+
+# Environment variables
+.env
+
+# Logs
+*.log
