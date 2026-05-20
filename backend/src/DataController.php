@@ -20,7 +20,7 @@ class DataController
                 *
             FROM videos
         ";
-        $data = $this->db->fetchAll($radarQuery);
+        $data = $this->db->fetchAll($data);
         
         Response::json($data);
     }
