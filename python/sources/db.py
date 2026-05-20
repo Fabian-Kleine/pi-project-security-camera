@@ -1,15 +1,13 @@
 import sys
 import os
-import json
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 import mysql.connector
 from db_config import DB_CONFIG
 
-# Function to save sensor data to MySQL database
-def save_sensor_data_to_db(table: str, data: dict):
-    """Save the provided data dictionary to the specified MySQL table."""
+def save_video_to_db(video_url: str, thumbnail_url: str):
+    """Save video and thumbnail paths to the videos table."""
     try:
         conn = mysql.connector.connect(
             host=DB_CONFIG['host'],
@@ -21,16 +19,10 @@ def save_sensor_data_to_db(table: str, data: dict):
     except mysql.connector.Error as e:
         print(f'Failed to connect to MySQL: {e}')
         raise SystemExit(1)
-    
+
     cursor = conn.cursor()
-
-    jsonData = json.dumps(data)
-
-    jsonStringData = "'" + jsonData + "'"
-
-    sql = f"INSERT INTO {table} (sensor_data) VALUES ({jsonStringData})"
-
-    cursor.execute(sql)
+    sql = "INSERT INTO videos (video_url, video_thumbnail_url) VALUES (%s, %s)"
+    cursor.execute(sql, (video_url, thumbnail_url))
     conn.commit()
     cursor.close()
     conn.close()
