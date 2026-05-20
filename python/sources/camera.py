@@ -15,8 +15,10 @@ def capture_video_and_thumbnail(output_dir=OUTPUT_DIR):
     os.makedirs(output_dir, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    thumbnail_path = os.path.abspath(os.path.join(output_dir, f"{timestamp}_thumb.jpg"))
-    video_path = os.path.abspath(os.path.join(output_dir, f"{timestamp}.mp4"))
+    thumbnail_filename = f"{timestamp}_thumb.jpg"
+    video_filename = f"{timestamp}.mp4"
+    thumbnail_path = os.path.join(output_dir, thumbnail_filename)
+    video_path = os.path.join(output_dir, video_filename)
 
     cam = Picamera2()
 
@@ -34,4 +36,4 @@ def capture_video_and_thumbnail(output_dir=OUTPUT_DIR):
     cam.stop_recording()
     cam.stop()
 
-    return video_path, thumbnail_path
+    return video_filename, thumbnail_filename
