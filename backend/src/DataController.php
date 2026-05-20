@@ -15,32 +15,14 @@ class DataController
 
     public function index(): void 
     {
-        $radarQuery = "
+        $data = "
             SELECT 
-                id, 
-                sensor_data, 
-                created_at
-            FROM radar_sensor_data
-            ORDER BY created_at DESC
+                *
+            FROM videos
         ";
-        $radarData = $this->db->fetchAll($radarQuery);
+        $data = $this->db->fetchAll($radarQuery);
         
-        $vocQuery = "
-            SELECT 
-                id, 
-                sensor_data, 
-                created_at
-            FROM voc_sensor_data
-            ORDER BY created_at DESC
-        ";
-        $vocData = $this->db->fetchAll($vocQuery);
-
-        $groupedData = [ //Groups the Data from the Database from the SQL Requests
-            'radar_sensor' => $radarData,
-            'voc_sensor' => $vocData
-        ];
-        
-        Response::json($groupedData);
+        Response::json($data);
     }
 
     public function getDataPeriod($startDate, $endDate): void {
