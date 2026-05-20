@@ -5,3 +5,5 @@ DB_CONFIG = {
     'password': 'shopware',
     'port': 3306
 }
+
+OUTPUT_DIR = '/var/www/html'

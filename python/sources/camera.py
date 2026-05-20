@@ -1,11 +1,14 @@
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from picamera2 import Picamera2
 from picamera2.outputs import FfmpegOutput
 from picamera2.encoders import H264Encoder
 from datetime import datetime
-import os
 import time
-
-OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'output')
+from db_config import OUTPUT_DIR
 
 
 def capture_video_and_thumbnail(output_dir=OUTPUT_DIR):
