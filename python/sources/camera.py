@@ -21,19 +21,21 @@ def capture_video_and_thumbnail(output_dir=OUTPUT_DIR):
     video_path = os.path.join(output_dir, video_filename)
 
     cam = Picamera2()
+    try:
+        cam.configure(cam.create_still_configuration())
+        cam.start()
+        cam.capture_file(thumbnail_path)
+        cam.stop()
 
-    cam.configure(cam.create_still_configuration())
-    cam.start()
-    cam.capture_file(thumbnail_path)
-    cam.stop()
-
-    cam.configure(cam.create_video_configuration())
-    encoder = H264Encoder()
-    cam.start()
-    time.sleep(2)  # Kamera warm-up
-    cam.start_recording(encoder, FfmpegOutput(video_path))
-    time.sleep(5)  # Aufnahmedauer
-    cam.stop_recording()
-    cam.stop()
+        cam.configure(cam.create_video_configuration())
+        encoder = H264Encoder()
+        cam.start()
+        time.sleep(2)  # Kamera warm-up
+        cam.start_recording(encoder, FfmpegOutput(video_path))
+        time.sleep(5)  # Aufnahmedauer
+        cam.stop_recording()
+        cam.stop()
+    finally:
+        cam.close()
 
     return video_filename, thumbnail_filename
