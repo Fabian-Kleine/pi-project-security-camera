@@ -11,11 +11,14 @@ cam = Picamera2()
 cam.configure(cam.create_video_configuration())
 encoder = H264Encoder()
 
+cam.start()
+time.sleep(2)  # Kamera warm-up
+
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 output_path = f"output/{timestamp}.mp4"
 
 cam.start_recording(encoder, FfmpegOutput(output_path))
-time.sleep(5)
+time.sleep(5)  # eigentliche Aufnahmedauer
 cam.stop_recording()
 
 print(f"Video saved: {output_path}")
