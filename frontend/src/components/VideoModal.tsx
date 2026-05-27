@@ -5,7 +5,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
-import { type Video, formatDateTime, formatDuration } from "@/data/mockVideos"
+import { type Video, formatDateTime, formatDuration } from "@/data/videos"
+import { PUBLIC_URL } from "@/config"
 
 type VideoModalProps = {
   video: Video | null
@@ -25,7 +26,7 @@ export function VideoModal({ video, onClose }: VideoModalProps) {
           <div className="flex flex-col gap-4">
             <video
               key={video.id}
-              src={video.videoUrl}
+              src={`${PUBLIC_URL}${video.videoUrl}`}
               controls
               autoPlay
               className="w-full rounded-lg bg-black"
