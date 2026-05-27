@@ -28,7 +28,7 @@ class DataController
         $total = (int)($this->db->fetch('SELECT COUNT(*) AS cnt FROM videos')['cnt'] ?? 0);
 
         $stmt = $this->db->getPdo()->prepare(
-            'SELECT * FROM videos ORDER BY created_at DESC LIMIT :limit OFFSET :offset'
+            'SELECT * FROM videos ORDER BY timestamp DESC LIMIT :limit OFFSET :offset'
         );
         $stmt->bindValue(':limit',  $limit,  \PDO::PARAM_INT);
         $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
