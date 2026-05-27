@@ -50,9 +50,9 @@ npx vite --host
 
 Das Frontend ist dann unter `<IP-Adresse>:5173` aufrufbar.
 
-### Web-Oberfläche
+## Web-Oberfläche
 
-#### Eigenentwicklung
+### Eigenentwicklung
 
 Die folgenden Dateien stammen nicht von genutzten Libraries oder Ähnlichem und wurden eigenständig entwickelt:
 
@@ -67,6 +67,12 @@ frontend/
         ├── App.tsx
         └── config.ts
 ```
+
+### Screenshots
+
+![Frontend](./images/frontend.png)
+
+![Frontend Modal](./images/frontend-modal.png)
 
 ## Backend
 
