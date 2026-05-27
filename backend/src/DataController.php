@@ -26,10 +26,14 @@ class DataController
         $offset = ($page - 1) * $limit;
 
         $total = (int)($this->db->fetch('SELECT COUNT(*) AS cnt FROM videos')['cnt'] ?? 0);
-        $data  = $this->db->fetchAll(
-            'SELECT * FROM videos ORDER BY created_at DESC LIMIT :limit OFFSET :offset',
-            [':limit' => $limit, ':offset' => $offset]
+
+        $stmt = $this->db->getPdo()->prepare(
+            'SELECT * FROM videos ORDER BY created_at DESC LIMIT :limit OFFSET :offset'
         );
+        $stmt->bindValue(':limit',  $limit,  \PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
 
         Response::json([
             'data'        => $data,
