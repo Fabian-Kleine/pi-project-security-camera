@@ -14,16 +14,20 @@ class MotionSensor:
         time.sleep(init_time)
         print("Bereit!")
 
+    # Check if motion is currently detected
     def is_motion_detected(self):
         return bool(GPIO.input(self.pin))
 
+    # Wait until motion is detected
     def wait_for_motion(self):
         while not self.is_motion_detected():
             time.sleep(0.1)
 
+    # Wait until no motion is detected
     def wait_for_no_motion(self):
         while self.is_motion_detected():
             time.sleep(0.1)
 
+    # Clean up GPIO settings on exit
     def cleanup(self):
         GPIO.cleanup()
