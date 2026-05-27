@@ -32,7 +32,7 @@ def capture_video_and_thumbnail(output_dir=OUTPUT_DIR):
         cam.start()
         time.sleep(2)  # Kamera warm-up
         cam.start_recording(encoder, FfmpegOutput(video_path))
-        time.sleep(5)  # Aufnahmedauer
+        time.sleep(10)  # Aufnahmedauer
         cam.stop_recording()
         cam.stop()
     finally:
