@@ -34,8 +34,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 try {
     
-    if (count($segments) === 0 || $segments[0] === '') { //Checks if the rquest is only the base Url and executed the index method
+    if (count($segments) === 0 || $segments[0] === '') {
         $controller->index();
+        exit;
+    }
+
+    if ($segments[0] === 'videos' && $method === 'GET') {
+        $controller->paginate();
         exit;
     }
     /*
