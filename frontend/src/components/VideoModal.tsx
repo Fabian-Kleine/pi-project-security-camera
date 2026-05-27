@@ -5,7 +5,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
-import { type Video, formatDateTime, formatDuration } from "@/data/videos"
+import { type Video, formatDateTime } from "@/data/videos"
 import { PUBLIC_URL } from "@/config"
 
 type VideoModalProps = {
@@ -33,7 +33,6 @@ export function VideoModal({ video, onClose }: VideoModalProps) {
             />
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Badge variant="secondary">{formatDateTime(video.recordedAt)}</Badge>
-              <Badge variant="outline">{formatDuration(video.durationSeconds)}</Badge>
             </div>
           </div>
         )}

@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { VideoModal } from "@/components/VideoModal"
-import { type Video, formatDateTime, formatDuration } from "@/data/videos"
+import { type Video, formatDateTime } from "@/data/videos"
 import { PlayCircle, RefreshCw } from "lucide-react"
 import { API_BASE_URL, PUBLIC_URL, UPDATE_INTERVAL_MS } from "@/config"
 
@@ -21,7 +20,6 @@ function mapVideo(v: ApiVideo): Video {
     filename: v.video_url,
     // MySQL datetime has a space separator; replace with T for reliable parsing
     recordedAt: new Date(v.timestamp.replace(" ", "T")),
-    durationSeconds: v.duration_seconds ?? 0,
     thumbnailUrl: v.video_thumbnail_url,
     videoUrl: v.video_url,
   }
@@ -130,14 +128,6 @@ function VideoCard({ video, onClick }: { video: Video; onClick: () => void }) {
         <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity hover:opacity-100">
           <PlayCircle className="size-12 text-white drop-shadow" />
         </div>
-        {video.durationSeconds > 0 && (
-          <Badge
-            variant="secondary"
-            className="absolute bottom-2 right-2 bg-black/60 text-white"
-          >
-            {formatDuration(video.durationSeconds)}
-          </Badge>
-        )}
       </div>
       <CardContent className="p-3">
         <p className="truncate text-sm font-medium">{video.filename}</p>
