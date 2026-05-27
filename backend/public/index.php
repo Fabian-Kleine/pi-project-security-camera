@@ -42,67 +42,6 @@ try {
     / This is the Routing logic. It checks wich how many Segements are in the request and dependent
     / what Endpoint the client is Requesting is executes the corresponding Method from the DataController.
     */
-    if ($segments[0] === 'voc') { 
-        if ($method === 'GET' && count($segments) === 1) { 
-            $controller->getVocData();
-            exit;
-        }
-
-        if ($method === 'GET' && count($segments) === 2 && $segments[1] === 'period') {
-            $startDate = $_GET['start'] ?? null; //Gets parameters from the GET Request and stores it in the variables
-            $endDate = $_GET['end'] ?? null;
-        
-            if (!$startDate || !$endDate) { //If there is no start or end date it is throwing an Error
-                Response::json(['error' => 'Missing start or end date parameter'], 400);
-                exit;
-            }
-            
-            $controller->getVocDataPeriod($startDate, $endDate);
-            exit;
-        }
-    }
-
-    if ($segments[0] === 'radar') {
-        if ($method === 'GET' && count($segments) === 1) {
-            $controller->getRadarData();
-            exit;
-        }
-
-        if ($method === 'GET' && count($segments) === 2 && $segments[1] === 'period') {
-            $startDate = $_GET['start'] ?? null;
-            $endDate = $_GET['end'] ?? null;
-        
-            if (!$startDate || !$endDate) {
-                Response::json(['error' => 'Missing start or end date parameter'], 400);
-                exit;
-            }
-            
-            $controller->getRadarDataPeriod($startDate, $endDate);
-            exit;
-        }
-    }
-
-    if ($segments[0] === 'period') {
-        if ($method === 'GET' && count($segments) === 1) {
-            $startDate = $_GET['start'] ?? null;
-            $endDate = $_GET['end'] ?? null;
-        
-            if (!$startDate || !$endDate) {
-                Response::json(['error' => 'Missing start or end date parameter'], 400);
-                exit;
-            }
-            
-            $controller->getDataPeriod($startDate, $endDate);
-            exit;
-        }
-    }
-
-    if($segments[0] === 'regression' ) {
-        if($method === 'GET' && count($segments) === 1) {
-            $controller->getRegressionData();
-            exit;
-        }
-    }
 
     Response::json(['error' => 'Not Found'], 404);
 } catch (Throwable $e) {
