@@ -101,3 +101,11 @@ Die Kamera wird über den CSI-Anschluss des Raspberry Pi verbunden.
 #### Kamera
 
 ![Kamera Anschluss](./images/camera.jpg)
+
+### Datenbank Struktur
+
+![Datenbank Struktur](./images/database_structure.png)
+
+### Datenbank Daten
+
+![Datenbank Struktur](./images/database_data.png)
